@@ -1,0 +1,6 @@
+@WatchTime_HostAddress = http://localhost:5071
+
+GET {{WatchTime_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

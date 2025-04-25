@@ -1,0 +1,75 @@
+<span style="font-family: verdana, geneva, sans-serif;"><!DOCTYPE html>
+    <html lang="en">
+      <head>
+        <title>Sign Up | WatchTime</title>
+      </head>
+      <body>
+        <div class="signup-box">
+          <h1>Sign Up</h1>
+          <h4>It's free and only takes a minute</h4>
+          <form [formGroup]="registrationform">
+            <label>First Name</label>
+            <input [class.is-invalid] = "registrationform.get('firstname')?.invalid  &&  registrationform.get('firstname')?.touched" formControlName = "firstname" type="text" class="form-control mt-1">
+            <div *ngIf= "registrationform.get('firstname')?.invalid  &&  registrationform.get('firstname')?.touched">
+              <small [class.d-none] = "registrationform.get('firstname')?.errors?.['required']" class="text-danger"> firstname is required </small>
+              <small [class.d-none] = "registrationform.get('firstname')?.errors?.['minlength']" class="text-danger"><br>firstname must have atleast 3 characters </small>
+            </div>
+            <label>Last Name</label>
+            <input [class.is-invalid] = "registrationform.get('lastname')?.invalid  &&  registrationform.get('lastname')?.touched" formControlName = "lastname" type="text" class="form-control mt-2">
+            <div *ngIf= "registrationform.get('lastname')?.invalid  &&  registrationform.get('lastname')?.touched">
+              <small [class.d-none] = "registrationform.get('lastname')?.errors?.['required']" class="text-danger"> LastName is required </small>
+              <small [class.d-none] = "registrationform.get('lastname')?.errors?.['minlength']" class="text-danger"><br>LastName must have atleast 1 characters </small>
+            </div>
+            <label>Email</label>
+            <input type="text" [class.is-invalid] = "registrationform.get('email')?.invalid &&  registrationform.get('email')?.touched" formControlName = "email" class="form-control mt-2">
+            <div *ngIf="email?.invalid && (email?.dirty || email?.touched)">
+             <small [class.d-none] = "email?.errors?.['required']" class="text-danger"> email is required </small>
+            </div>
+
+            <label>Mobile Number</label>
+            <input type="text" [class.is-invalid] = "registrationform.get('mobilenumber')?.invalid &&  registrationform.get('mobilenumber')?.touched" formControlName = "mobilenumber" class="form-control mt-2">
+            <div *ngIf="mobilenumber?.invalid && (mobilenumber?.dirty || mobilenumber?.touched)">
+             <small [class.d-none] = "mobilenumber?.errors?.['required']" class="text-danger"> Mobile Number is required </small>
+            </div>
+
+            <label>User Name</label>
+            <input [class.is-invalid] = "registrationform.get('username')?.invalid  &&  registrationform.get('username')?.touched" formControlName = "username" type="text" class="form-control mt-3">
+            <div *ngIf= "registrationform.get('username')?.invalid  &&  registrationform.get('username')?.touched">
+              <small [class.d-none] = "registrationform.get('username')?.errors?.['required']" class="text-danger"> username is required </small>
+              <small [class.d-none] = "registrationform.get('username')?.errors?.['minlength']" class="text-danger"><br>username must have atleast 3 characters </small>
+            </div>
+           
+            <label>Password</label>
+            <input type="password" [class.is-invalid] = "password.invalid  &&  password?.touched" formControlName = "password" class="form-control mt-2">
+            <div *ngIf="password?.invalid && (password?.dirty || password?.touched)">
+              <small class = "text-danger" [class.d-none] = "password.errors?.['required']"> Password is required</small>
+            </div>
+            
+            <label>Confirm Password</label>
+            <input type="password" [class.is-invalid] = "confirmpassword.invalid  &&  confirmpassword?.touched" formControlName = "confirmpassword" class="form-control mt-2">
+            <div *ngIf="confirmpassword?.invalid && (confirmpassword?.dirty || confirmpassword?.touched)">
+              <small class = "text-danger" [class.d-none] = "confirmpassword.errors?.['required']"> Confirm Password is required</small>
+            </div>
+            <div *ngIf="(confirmpassword?.dirty || confirmpassword?.touched) && confirmpassword?.value != password?.value">
+              <small class = "text-danger" [class.d-none] = "confirmpassword.errors?.['required']"> confirm Password is Mismatch</small>
+            </div>
+
+            <input type="button" [disabled]="registrationform.invalid" value="Submit" (click)="onSubmit()" />
+          </form>
+          <p>
+            By clicking the Sign Up button,you agree to our <br />
+            <a href="#">Terms and Condition</a> and <a href="#">Policy Privacy</a>
+          </p>
+        </div>
+        <!--<p class="para-2">
+          Already have an account? <a href="#" routerLink="logIn">Login here</a>
+        </p>-->
+
+        <div role="alert" *ngIf="registerFlag" style="color:green">
+          <h4 cAlertHeading>Thank you!</h4>
+          <p>you have successfully Register .</p>
+          <hr />
+        </div>
+
+      </body>
+    </html></span>

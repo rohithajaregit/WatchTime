@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+      <title>WatchTime Login</title>
+</head>
+
+<body>
+    <div class="main">
+            <h1>WatchTime</h1>
+            <h3>Enter your login credentials</h3>
+            <form [formGroup]="logInForm">
+
+                  <div *ngIf="!isLogIn" style="color:rgb(236, 26, 26)"> <h4>Incorrect UserName or Password </h4></div>
+                 
+                <div class="form-group">
+                    <label for="first">Username: </label>
+                    <input [class.is-invalid] = "logInForm.get('username')?.invalid  &&  logInForm.get('username')?.touched" formControlName = "username" type="text" class="form-control mt-1">
+                    <div *ngIf= "logInForm.get('username')?.invalid  &&  logInForm.get('username')?.touched">
+                      <small [class.d-none] = "logInForm.get('username')?.errors?.['required']" class="text-danger"> Username is required </small>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="password">Password:</label>
+                    <input [class.is-invalid] = "password?.invalid  && password?.touched" formControlName = "password" type="password" class="form-control mt-2">
+                    <div *ngIf= "password?.invalid  &&  password?.touched">
+                      <small [class.d-none] = "password?.errors?.['required']" class="text-danger"> Password is required </small>
+                    </div>
+                </div>
+
+                  <div class="wrap">
+                        <button type="submit" [disabled]="logInForm.invalid" (click)="onsubmit()">Submit</button>
+                  </div>
+            </form>
+            
+            <p>Not registered?
+                  <a href="#" style="text-decoration: none;" routerLink="../Signup">Create an account</a>
+            </p>
+            
+      </div>
+</body>
+</html>
